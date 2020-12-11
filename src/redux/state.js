@@ -1,6 +1,18 @@
 const ADDPOST = "ADD_POST";
 const UPDATENEWPOST = "UPDATE-NEW-POST";
 
+export const addPostActionCreator = () => {
+  return {
+    type: ADDPOST
+  };
+};
+export const updatePostActionCreator = (text) => {
+  return {
+    type: UPDATENEWPOST,
+    text: text
+  };
+};
+
 export const store = {
   state: {
     profilePage: {
@@ -41,20 +53,14 @@ export const store = {
       countLikes: 0
     };
   },
-  addPost() {
-    this.state.profilePage.posts.push(this.newPost());
-    this.rerenderEntireTree(this.state);
-    this.state.profilePage.newPostValue = "";
-  },
-  updateNewPost(text) {
-    this.state.profilePage.newPostValue = text;
-    this.rerenderEntireTree(this.state);
-  },
-  dispatch({ type }) {
-    if (type === ADDPOST) {
-      this.addPost();
-    } else if (type === UPDATENEWPOST) {
-      this.updateNewPost();
+  dispatch(action) {
+    if (action.type === ADDPOST) {
+      this.state.profilePage.posts.push(this.newPost());
+      this.rerenderEntireTree(this.state);
+      this.state.profilePage.newPostValue = "";
+    } else if (action.type === UPDATENEWPOST) {
+      this.state.profilePage.newPostValue = action.text;
+      this.rerenderEntireTree(this.state);
     }
   }
 };

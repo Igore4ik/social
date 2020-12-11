@@ -1,22 +1,23 @@
 import React from "react";
+import { addPostActionCreator } from "./../../../redux/state";
+import { updatePostActionCreator } from "./../../../redux/state";
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-const MyPosts = ({ data, addPost, updateNewPost }) => {
+const MyPosts = ({ data, dispatch }) => {
   const refToText = React.createRef();
-  // console.log(data)
+
   const addPosts = () => {
     const text = refToText.current.value;
     if (text.trim() !== "") {
-      addPost();
+      dispatch(addPostActionCreator());
     }
-
     refToText.current.value = "";
   };
 
   const toUpdateNewPost = () => {
     let text = refToText.current.value;
-    updateNewPost(text);
+    dispatch(updatePostActionCreator(text));
   };
 
   const posts = data.profilePage.posts.map((el) => (

@@ -23,8 +23,7 @@ export default function App(props) {
               render={() => (
                 <Profile
                   data={store.state}
-                  addPost={store.addPost.bind(store)}
-                  updateNewPost={store.updateNewPost.bind(store)}
+                  dispatch={store.dispatch.bind(store)}
                 />
               )}
             />
