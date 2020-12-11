@@ -1,30 +1,5 @@
-const ADDPOST = "ADD_POST";
-const UPDATENEWPOST = "UPDATE-NEW-POST";
-const ADDMESSAGE = "ADD-MESSAGE";
-const UPDATEMESSAGE = "UPDATE-MESSAGE";
-
-export const addPostActionCreator = () => {
-  return {
-    type: ADDPOST
-  };
-};
-export const updatePostActionCreator = (text) => {
-  return {
-    type: UPDATENEWPOST,
-    text: text
-  };
-};
-export const addMessageActionCreator = () => {
-  return {
-    type: ADDMESSAGE
-  };
-};
-export const updateMessageActionCreator = (text) => {
-  return {
-    type: UPDATEMESSAGE,
-    text: text
-  };
-};
+import reducerDialogsPage from "./reducer-dialogsPage";
+import reducerProfilePage from "./reducer-pfofilePage";
 
 export const store = {
   state: {
@@ -53,41 +28,32 @@ export const store = {
       newMessage: ""
     }
   },
-  subscriber: function (observer) {
-    this.rerenderEntireTree = observer;
-  },
-  id: 100,
   rerenderEntireTree() {
     console.log("State changed");
   },
-  newPost() {
-    return {
-      id: this.id++,
-      text: this.state.profilePage.newPostValue,
-      countLikes: 0
-    };
+  subscriber: function (observer) {
+    this.rerenderEntireTree = observer;
   },
-  addNEWMessage() {
-    return {
-      id: this.id++,
-      text: this.state.dialogsPage.newMessage
-    };
-  },
+
   dispatch(action) {
-    if (action.type === ADDPOST) {
-      this.state.profilePage.posts.push(this.newPost());
-      this.rerenderEntireTree(this.state);
-      this.state.profilePage.newPostValue = "";
-    } else if (action.type === UPDATENEWPOST) {
-      this.state.profilePage.newPostValue = action.text;
-      this.rerenderEntireTree(this.state);
-    } else if (action.type === ADDMESSAGE) {
-      this.state.dialogsPage.messages.push(this.addNEWMessage());
-      this.rerenderEntireTree(this.state);
-      this.state.dialogsPage.newMessage = "";
-    } else if (action.type === UPDATEMESSAGE) {
-      this.state.dialogsPage.newMessage = action.text;
-      this.rerenderEntireTree(this.state);
-    }
+    this.state.profilePage = reducerProfilePage(this.state.profilePage, action);
+    this.state.dialogsPage = reducerDialogsPage(this.state.dialogsPage, action);
+
+    this.rerenderEntireTree(this.state);
   }
+  // ,id: 100,
+
+  // newPost() {
+  //   return {
+  //     id: this.id++,
+  //     text: this.state.profilePage.newPostValue,
+  //     countLikes: 0
+  //   };
+  // },
+  // addNEWMessage() {
+  //   return {
+  //     id: this.id++,
+  //     text: this.state.dialogsPage.newMessage
+  //   };
+  // }
 };
