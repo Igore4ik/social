@@ -27,10 +27,7 @@ export default function App(props) {
                 />
               )}
             />
-            <Route
-              path="/dialogs"
-              render={() => <Dialogs data={store.state} />}
-            />
+            <Route path="/dialogs" render={() => <Dialogs data={store} />} />
             <Route path="/news" component={News} />
             <Route path="/music" component={Music} />
             <Route path="/settings" component={Settings} />

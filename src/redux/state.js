@@ -1,5 +1,7 @@
 const ADDPOST = "ADD_POST";
 const UPDATENEWPOST = "UPDATE-NEW-POST";
+const ADDMESSAGE = "ADD-MESSAGE";
+const UPDATEMESSAGE = "UPDATE-MESSAGE";
 
 export const addPostActionCreator = () => {
   return {
@@ -9,6 +11,17 @@ export const addPostActionCreator = () => {
 export const updatePostActionCreator = (text) => {
   return {
     type: UPDATENEWPOST,
+    text: text
+  };
+};
+export const addMessageActionCreator = () => {
+  return {
+    type: ADDMESSAGE
+  };
+};
+export const updateMessageActionCreator = (text) => {
+  return {
+    type: UPDATEMESSAGE,
     text: text
   };
 };
@@ -36,7 +49,8 @@ export const store = {
         { id: 1, text: "Hello" },
         { id: 2, text: "How are you?" },
         { id: 3, text: "It's fuuny!" }
-      ]
+      ],
+      newMessage: ""
     }
   },
   subscriber: function (observer) {
@@ -53,6 +67,12 @@ export const store = {
       countLikes: 0
     };
   },
+  addNEWMessage() {
+    return {
+      id: this.id++,
+      text: this.state.dialogsPage.newMessage
+    };
+  },
   dispatch(action) {
     if (action.type === ADDPOST) {
       this.state.profilePage.posts.push(this.newPost());
@@ -60,6 +80,13 @@ export const store = {
       this.state.profilePage.newPostValue = "";
     } else if (action.type === UPDATENEWPOST) {
       this.state.profilePage.newPostValue = action.text;
+      this.rerenderEntireTree(this.state);
+    } else if (action.type === ADDMESSAGE) {
+      this.state.dialogsPage.messages.push(this.addNEWMessage());
+      this.rerenderEntireTree(this.state);
+      this.state.dialogsPage.newMessage = "";
+    } else if (action.type === UPDATEMESSAGE) {
+      this.state.dialogsPage.newMessage = action.text;
       this.rerenderEntireTree(this.state);
     }
   }
