@@ -7,7 +7,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import "./styles.css";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import MyPostsContainer from "./components/Profile/MyPosts/MyPostsContainer";
+import Profile from "./components/Profile/Profile";
 
 export default function App({ store }) {
   return (
@@ -17,10 +17,7 @@ export default function App({ store }) {
         <section className="content">
           <Navbar />
           <div className="App-content">
-            <Route
-              path="/profile"
-              render={() => <MyPostsContainer store={store} />}
-            />
+            <Route path="/profile" render={() => <Profile store={store} />} />
             <Route
               path="/dialogs"
               render={() => <DialogsContainer store={store} />}

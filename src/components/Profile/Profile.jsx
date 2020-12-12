@@ -1,14 +1,13 @@
 import React from "react";
 import InfoProfile from "./InfoProfile/InfoProfile";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import c from "./Profile.module.css";
 
-const Profile = ({ data, dispatch }) => {
-  // console.log(data.profilePage.profilePage.posts)
+const Profile = ({ store }) => {
   return (
     <section className={c.profile}>
       <InfoProfile />
-      <MyPosts data={data} dispatch={dispatch} />
+      <MyPostsContainer store={store} />
     </section>
   );
 };
