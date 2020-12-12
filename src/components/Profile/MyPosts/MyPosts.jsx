@@ -20,7 +20,7 @@ const MyPosts = ({ data, dispatch }) => {
     dispatch(updatePostActionCreator(text));
   };
 
-  const posts = data.profilePage.posts.map((el) => (
+  const posts = data.profilePage.profilePage.posts.map((el) => (
     <Post
       key={el.id + el.countLikes}
       message={el.text}

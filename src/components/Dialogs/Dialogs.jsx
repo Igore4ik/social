@@ -5,21 +5,21 @@ import c from "./Dialogs.module.css";
 import { addMessageActionCreator } from "../../redux/reducer-dialogsPage";
 import { updateMessageActionCreator } from "../../redux/reducer-dialogsPage";
 
-const Dialogs = (props) => {
+const Dialogs = ({ state, dispatch }) => {
   const addMessage = () => {
-    if (props.data.state.dialogsPage.newMessage !== "") {
-      props.data.dispatch(addMessageActionCreator());
+    if (state.dialogsPage.dialogsPage.newMessage !== "") {
+      dispatch(addMessageActionCreator());
     }
   };
   const updateMessage = (e) => {
     let text = e.target.value;
-    props.data.dispatch(updateMessageActionCreator(text));
+    dispatch(updateMessageActionCreator(text));
   };
 
-  const dialogsJsx = props.data.state.dialogsPage.dialogs.map((el) => (
+  const dialogsJsx = state.dialogsPage.dialogsPage.dialogs.map((el) => (
     <DialogItem key={el.name + " " + el.id} name={el.name} id={el.id} />
   ));
-  const messagesJsx = props.data.state.dialogsPage.messages.map((el) => (
+  const messagesJsx = state.dialogsPage.dialogsPage.messages.map((el) => (
     <Message key={el.name + " " + el.id} text={el.text} />
   ));
   return (
@@ -30,7 +30,7 @@ const Dialogs = (props) => {
         <textarea
           onChange={updateMessage}
           placeholder="Enter your message"
-          value={props.data.state.dialogsPage.newMessage}
+          value={state.dialogsPage.dialogsPage.newMessage}
         ></textarea>
         <button onClick={addMessage}>Add message</button>
       </div>

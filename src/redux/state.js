@@ -28,10 +28,11 @@ export const store = {
       newMessage: ""
     }
   },
+
   rerenderEntireTree() {
     console.log("State changed");
   },
-  subscriber: function (observer) {
+  subscribe: function (observer) {
     this.rerenderEntireTree = observer;
   },
 

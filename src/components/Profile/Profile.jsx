@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import c from "./Profile.module.css";
 
 const Profile = ({ data, dispatch }) => {
-  // console.log(data)
+  // console.log(data.profilePage.profilePage.posts)
   return (
     <section className={c.profile}>
       <InfoProfile />

@@ -7,10 +7,11 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import { store } from "./redux/state";
+// import { store } from "./redux/state";
 import "./styles.css";
 
-export default function App(props) {
+export default function App({ store }) {
+  // console.log(store.getState());
   return (
     <BrowserRouter>
       <div className="App">
@@ -22,12 +23,20 @@ export default function App(props) {
               path="/profile"
               render={() => (
                 <Profile
-                  data={store.state}
+                  data={store.getState()}
                   dispatch={store.dispatch.bind(store)}
                 />
               )}
             />
-            <Route path="/dialogs" render={() => <Dialogs data={store} />} />
+            <Route
+              path="/dialogs"
+              render={() => (
+                <Dialogs
+                  state={store.getState()}
+                  dispatch={store.dispatch.bind(store)}
+                />
+              )}
+            />
             <Route path="/news" component={News} />
             <Route path="/music" component={Music} />
             <Route path="/settings" component={Settings} />
