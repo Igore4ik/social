@@ -1,26 +1,24 @@
 import React from "react";
-import { addPostActionCreator } from "./../../../redux/reducer-pfofilePage";
-import { updatePostActionCreator } from "./../../../redux/reducer-pfofilePage";
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-const MyPosts = ({ data, dispatch }) => {
+const MyPosts = ({ state, addPosts, updateNewPost }) => {
   const refToText = React.createRef();
 
-  const addPosts = () => {
+  const onAddPosts = () => {
     const text = refToText.current.value;
     if (text.trim() !== "") {
-      dispatch(addPostActionCreator());
+      addPosts();
     }
     refToText.current.value = "";
   };
 
   const toUpdateNewPost = () => {
     let text = refToText.current.value;
-    dispatch(updatePostActionCreator(text));
+    updateNewPost(text);
   };
 
-  const posts = data.profilePage.profilePage.posts.map((el) => (
+  const posts = state.posts.map((el) => (
     <Post
       key={el.id + el.countLikes}
       message={el.text}
@@ -34,10 +32,10 @@ const MyPosts = ({ data, dispatch }) => {
       <div>
         <textarea
           onChange={toUpdateNewPost}
-          value={data.profilePage.newPostValue}
+          value={state.newPostValue}
           ref={refToText}
         ></textarea>
-        <button onClick={addPosts}>Add post</button>
+        <button onClick={onAddPosts}>Add post</button>
       </div>
       {posts}
     </div>
