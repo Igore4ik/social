@@ -2,7 +2,7 @@ import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import c from "./Dialogs.module.css";
-const Dialogs = ({ state, updateMessage, addMessage }) => {
+const Dialogs = ({ dialogsPage, updateMessage, addMessage }) => {
   const onAddMessage = () => {
     addMessage();
   };
@@ -11,10 +11,10 @@ const Dialogs = ({ state, updateMessage, addMessage }) => {
     updateMessage(text);
   };
 
-  const dialogsJsx = state.dialogs.map((el) => (
+  const dialogsJsx = dialogsPage.dialogs.map((el) => (
     <DialogItem key={el.name + " " + el.id} name={el.name} id={el.id} />
   ));
-  const messagesJsx = state.messages.map((el) => (
+  const messagesJsx = dialogsPage.messages.map((el) => (
     <Message key={el.name + " " + el.id} text={el.text} />
   ));
   return (
@@ -25,7 +25,7 @@ const Dialogs = ({ state, updateMessage, addMessage }) => {
         <textarea
           onChange={onUpdateMessage}
           placeholder="Enter your message"
-          value={state.newMessage}
+          value={dialogsPage.newMessage}
         ></textarea>
         <button onClick={onAddMessage}>Add message</button>
       </div>

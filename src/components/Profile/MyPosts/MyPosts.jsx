@@ -2,7 +2,7 @@ import React from "react";
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-const MyPosts = ({ state, addPosts, updateNewPost }) => {
+const MyPosts = ({ profilePage, addPosts, updateNewPost }) => {
   const refToText = React.createRef();
 
   const onAddPosts = () => {
@@ -18,7 +18,7 @@ const MyPosts = ({ state, addPosts, updateNewPost }) => {
     updateNewPost(text);
   };
 
-  const posts = state.posts.map((el) => (
+  const posts = profilePage.posts.map((el) => (
     <Post
       key={el.id + el.countLikes}
       message={el.text}
@@ -32,7 +32,7 @@ const MyPosts = ({ state, addPosts, updateNewPost }) => {
       <div>
         <textarea
           onChange={toUpdateNewPost}
-          value={state.newPostValue}
+          value={profilePage.newPostValue}
           ref={refToText}
         ></textarea>
         <button onClick={onAddPosts}>Add post</button>

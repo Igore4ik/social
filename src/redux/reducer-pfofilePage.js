@@ -2,14 +2,12 @@ const ADDPOST = "ADD_POST";
 const UPDATENEWPOST = "UPDATE-NEW-POST";
 
 let initialState = {
-  profilePage: {
-    posts: [
-      { id: 1, text: "It's my first post", countLikes: 12 },
-      { id: 2, text: "Hello everyone", countLikes: 2 },
-      { id: 3, text: "Nice to meet you", countLikes: 123 }
-    ],
-    newPostValue: ""
-  }
+  posts: [
+    { id: 1, text: "It's my first post", countLikes: 12 },
+    { id: 2, text: "Hello everyone", countLikes: 2 },
+    { id: 3, text: "Nice to meet you", countLikes: 123 }
+  ],
+  newPostValue: ""
 };
 
 export const addPostActionCreator = () => {
@@ -23,20 +21,23 @@ export const updatePostActionCreator = (text) => {
     text: text
   };
 };
-
+let id = 100;
 const reducerProfilePage = (state = initialState, action) => {
   switch (action.type) {
     case ADDPOST:
-      state.profilePage.posts.push({
-        id: 7,
-        text: state.profilePage.newPostValue,
-        countLikes: 0
-      });
-      state.profilePage.newPostValue = "";
-      return state;
+      return {
+        ...state,
+        posts: [
+          ...state.posts,
+          { id: id++, text: state.newPostValue, countLikes: 0 }
+        ],
+        newPostValue: ""
+      };
     case UPDATENEWPOST:
-      state.profilePage.newPostValue = action.text;
-      return state;
+      return {
+        ...state,
+        newPostValue: action.text
+      };
     default:
       return state;
   }
