@@ -9,7 +9,7 @@ import "./styles.css";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import Profile from "./components/Profile/Profile";
 
-export default function App({ store }) {
+export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
@@ -17,11 +17,8 @@ export default function App({ store }) {
         <section className="content">
           <Navbar />
           <div className="App-content">
-            <Route path="/profile" render={() => <Profile store={store} />} />
-            <Route
-              path="/dialogs"
-              render={() => <DialogsContainer store={store} />}
-            />
+            <Route path="/profile" render={() => <Profile />} />
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
             <Route path="/news" component={News} />
             <Route path="/music" component={Music} />
             <Route path="/settings" component={Settings} />

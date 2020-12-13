@@ -3,11 +3,11 @@ import InfoProfile from "./InfoProfile/InfoProfile";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import c from "./Profile.module.css";
 
-const Profile = ({ store }) => {
+const Profile = () => {
   return (
     <section className={c.profile}>
       <InfoProfile />
-      <MyPostsContainer store={store} />
+      <MyPostsContainer />
     </section>
   );
 };
