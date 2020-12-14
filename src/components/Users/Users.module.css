@@ -1,0 +1,16 @@
+.users {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  padding: 5px;
+  margin: 5px;
+  /* justify-content: space-between; */
+}
+.photo {
+  width: 20%;
+}
+.content {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
