@@ -39,7 +39,7 @@ const Users = (props) => {
               {el.followed ? (
                 <button
                   onClick={() => {
-                    props.followUser(el.id);
+                    props.follow(el.id);
                   }}
                 >
                   Unfollowed
@@ -47,7 +47,7 @@ const Users = (props) => {
               ) : (
                 <button
                   onClick={() => {
-                    props.unFollowUser(el.id);
+                    props.unFollow(el.id);
                   }}
                 >
                   Followed

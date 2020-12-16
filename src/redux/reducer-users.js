@@ -12,31 +12,31 @@ const initialState = {
   isFetching: true
 };
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
   return {
     type: SET_USERS,
     users
   };
 };
-export const followAC = (id) => {
+export const follow = (id) => {
   return {
     type: FOLLOW,
     id
   };
 };
-export const unFollowAC = (id) => {
+export const unFollow = (id) => {
   return {
     type: UNFOLLOW,
     id
   };
 };
-export const setCerrentPageAC = (currentPage) => {
+export const setCerrentPage = (currentPage) => {
   return {
     type: SET_CURRENT_PAGE,
     currentPage
   };
 };
-export const fetchingAC = (isFetching) => {
+export const toggleFetching = (isFetching) => {
   return {
     type: FETCHING,
     isFetching
