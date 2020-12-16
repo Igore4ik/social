@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
+  fetchingAC,
   followAC,
   setCerrentPageAC,
   setUsersAC,
@@ -11,6 +12,7 @@ import axios from "axios";
 
 class UsersContainer extends Component {
   componentDidMount() {
+    this.props.toggleFetching(true);
     // axios.get("https://social-network.samuraijs.com/api/1.0/users")
     axios
       .get(
@@ -18,17 +20,20 @@ class UsersContainer extends Component {
       )
 
       .then((response) => {
+        this.props.toggleFetching(false);
         this.props.setUsers(response.data.results);
       });
   }
   setPage = (n) => {
     this.props.setCerrentPage(n);
+    this.props.toggleFetching(true);
     axios
       .get(
         `https://randomuser.me/api/?results=${this.props.pageSize}&page=${n}&seed=0e7291e8b94f7b30`
       )
 
       .then((response) => {
+        this.props.toggleFetching(false);
         this.props.setUsers(response.data.results);
       });
   };
@@ -43,6 +48,7 @@ class UsersContainer extends Component {
         currentPage={this.props.currentPage}
         followUser={this.props.followUser}
         unFollowUser={this.props.unFollowUser}
+        isFetching={this.props.isFetching}
       />
     );
   }
@@ -53,7 +59,8 @@ const mapStateToProps = (state) => {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage
+    currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -69,6 +76,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setCerrentPage: (currentPage) => {
       dispatch(setCerrentPageAC(currentPage));
+    },
+    toggleFetching: (isFetching) => {
+      dispatch(fetchingAC(isFetching));
     }
   };
 };

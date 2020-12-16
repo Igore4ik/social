@@ -1,14 +1,15 @@
-import React from "react";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SETUSERS";
 const SET_CURRENT_PAGE = "SETCURRENTPAGE";
+const FETCHING = "FETCHING";
 
 const initialState = {
   users: [],
   pageSize: 5, // сколько юзеров отобразить на странице
   totalUsersCount: 20, // общее кол-во юзеров  (totalCount)
-  currentPage: 1 // текущая стр
+  currentPage: 1, // текущая стр
+  isFetching: true
 };
 
 export const setUsersAC = (users) => {
@@ -20,19 +21,25 @@ export const setUsersAC = (users) => {
 export const followAC = (id) => {
   return {
     type: FOLLOW,
-    id: id
+    id
   };
 };
 export const unFollowAC = (id) => {
   return {
     type: UNFOLLOW,
-    id: id
+    id
   };
 };
 export const setCerrentPageAC = (currentPage) => {
   return {
     type: SET_CURRENT_PAGE,
     currentPage
+  };
+};
+export const fetchingAC = (isFetching) => {
+  return {
+    type: FETCHING,
+    isFetching
   };
 };
 
@@ -73,6 +80,11 @@ const reducerUsersPage = (state = initialState, action) => {
       return {
         ...state,
         currentPage: action.currentPage
+      };
+    case FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching
       };
     default:
       return state;
