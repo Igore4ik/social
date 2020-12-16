@@ -1,5 +1,6 @@
 const ADDPOST = "ADD_POST";
 const UPDATENEWPOST = "UPDATE-NEW-POST";
+const SET_PROFILE = "SET_PROFILE";
 
 let initialState = {
   posts: [
@@ -7,7 +8,8 @@ let initialState = {
     { id: 2, text: "Hello everyone", countLikes: 2 },
     { id: 3, text: "Nice to meet you", countLikes: 123 }
   ],
-  newPostValue: ""
+  newPostValue: "",
+  profile: null
 };
 
 export const addPostActionCreator = () => {
@@ -18,7 +20,13 @@ export const addPostActionCreator = () => {
 export const updatePostActionCreator = (text) => {
   return {
     type: UPDATENEWPOST,
-    text: text
+    text
+  };
+};
+export const setProfile = (profile) => {
+  return {
+    type: SET_PROFILE,
+    profile
   };
 };
 let id = 100;
@@ -37,6 +45,11 @@ const reducerProfilePage = (state = initialState, action) => {
       return {
         ...state,
         newPostValue: action.text
+      };
+    case SET_PROFILE:
+      return {
+        ...state,
+        profile: action.profile
       };
     default:
       return state;

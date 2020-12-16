@@ -7,8 +7,8 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import "./styles.css";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Profile from "./components/Profile/Profile";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
         <section className="content">
           <Navbar />
           <div className="App-content">
-            <Route path="/profile" render={() => <Profile />} />
+            <Route path="/profile" render={() => <ProfileContainer />} />
             <Route path="/dialogs" render={() => <DialogsContainer />} />
             <Route path="/news" component={News} />
             <Route path="/music" component={Music} />

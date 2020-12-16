@@ -1,6 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
 import c from "./Users.module.css";
+const defaultPhoto =
+  "https://us.123rf.com/450wm/yayayoy/yayayoy1511/yayayoy151100009/48712505-stock-vector-smiling-emoticon-with-open-mouth-and-smiling-eyes.jpg?ver=6";
 
 const Users = (props) => {
   let pages = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -31,10 +34,16 @@ const Users = (props) => {
       {props.users.map((el) => (
         <div className={c.users} key={el.id.value + el.email}>
           <div className={c.photo}>
-            <img
-              src="https://us.123rf.com/450wm/yayayoy/yayayoy1511/yayayoy151100009/48712505-stock-vector-smiling-emoticon-with-open-mouth-and-smiling-eyes.jpg?ver=6"
-              alt=""
-            />
+            <NavLink to="/profile">
+              <img
+                src={
+                  el.picture.thumbnail != null
+                    ? el.picture.thumbnail
+                    : defaultPhoto
+                }
+                alt=""
+              />
+            </NavLink>
             <div>
               {el.followed ? (
                 <button
