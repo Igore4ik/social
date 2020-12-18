@@ -16,9 +16,9 @@ const InfoProfile = ({ profile }) => {
 
         <div className={c.userProfile}>
           <div className={c.photo}>
-            <img src={profile[0].picture.medium} alt="" />
+            <img src={profile[0].picture.large} alt="" />
           </div>
-          <div className={c.desc}>{profile[0].gender}</div>
+          <div className={c.desc}>{profile[0].name.first}</div>
         </div>
       </div>
     );

@@ -22,7 +22,11 @@ class UsersContainer extends Component {
       .then((response) => {
         this.props.toggleFetching(false);
         this.props.setUsers(response.data.results);
-      });
+        console.log(response.headers);
+      })
+      .catch(err => {
+        console.error(err);
+      })
   }
   setPage = (n) => {
     this.props.setCerrentPage(n);
@@ -35,7 +39,10 @@ class UsersContainer extends Component {
       .then((response) => {
         this.props.toggleFetching(false);
         this.props.setUsers(response.data.results);
-      });
+      })
+      .catch(err => {
+        console.error(err);
+      })
   };
 
   render() {

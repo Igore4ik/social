@@ -4,7 +4,6 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import c from "./Profile.module.css";
 
 const Profile = (props) => {
-  // console.log(props.profile.cell)
   return (
     <section className={c.profile}>
       <InfoProfile profile={props.profile} />
