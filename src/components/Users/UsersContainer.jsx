@@ -9,17 +9,13 @@ import {
 } from "../../redux/reducer-users";
 import Users from "./Users";
 import axios from "axios";
+import {getUsers} from "./../../api/api";
 
 class UsersContainer extends Component {
   componentDidMount() {
     this.props.toggleFetching(true);
     // axios.get("https://social-network.samuraijs.com/api/1.0/users")
-    axios
-      .get(
-        `https://randomuser.me/api/?results=${this.props.pageSize}&page=${this.props.currentPage}&seed=0e7291e8b94f7b30`
-      )
-
-      .then((response) => {
+    getUsers().then((response) => {
         this.props.toggleFetching(false);
         this.props.setUsers(response.data.results);
         console.log(response.headers);

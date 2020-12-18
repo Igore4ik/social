@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+// import { BrowserRouter, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
@@ -9,10 +9,11 @@ import "./styles.css";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import { Route } from "react-router-dom";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <div className="App">
         <Header />
         <section className="content">
@@ -27,6 +28,6 @@ export default function App() {
           </div>
         </section>
       </div>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
