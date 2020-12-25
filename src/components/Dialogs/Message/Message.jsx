@@ -9,6 +9,6 @@ const Message = (props) =>{
           {props.text}
       </div>
    )
-}
+};
 
 export default Message;

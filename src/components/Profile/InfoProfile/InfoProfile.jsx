@@ -1,28 +1,37 @@
 import React from "react";
 import Preloader from "../../Preloader/Preloader";
 import c from "./InfoProfile.module.css";
+import StatusProfile from "./StatusProfile";
 
-const InfoProfile = ({ profile }) => {
-  if (!profile) {
-    return <Preloader />;
-  } else {
-    return (
-      <div>
-        <img
-          className={c.image}
-          src="https://www.imgonline.com.ua/examples/random-pixels-big.png"
-          alt=""
-        />
 
-        <div className={c.userProfile}>
-          <div className={c.photo}>
-            <img src={profile[0].picture.large} alt="" />
-          </div>
-          <div className={c.desc}>{profile[0].name.first}</div>
-        </div>
-      </div>
-    );
-  }
+const defaultPhoto =
+    "https://us.123rf.com/450wm/yayayoy/yayayoy1511/yayayoy151100009/48712505-stock-vector-smiling-emoticon-with-open-mouth-and-smiling-eyes.jpg?ver=6";
+
+const InfoProfile = ({profile, status, updateStatusThunk}) => {
+    //если профиль отсутствует - загружается прелоадер(круг с загрузкой)
+    if (!profile) {
+        return <Preloader/>;
+    } else {
+
+        return (
+            <div>
+                <img
+                    className={c.image}
+                    src="https://www.imgonline.com.ua/examples/random-pixels-big.png"
+                    alt=""
+                />
+      {/*//отображаем профиль*/}
+                <div className={c.userProfile}>
+                    {/*//дивка с фото, если фото нет - исспользуем по умолчанию defaultPhoto*/}
+                    <div className={c.photo}>
+                        <img src={!profile.photos.large ? defaultPhoto : profile.photos.large} alt=""/>
+                    </div>
+                    {/*//отображаем компоненту StatusProfile которая рисует статус*/}
+                      <StatusProfile profile={profile} status={status} updateStatusThunk={updateStatusThunk}/>
+                </div>
+            </div>
+        );
+    }
 };
 
 export default InfoProfile;
